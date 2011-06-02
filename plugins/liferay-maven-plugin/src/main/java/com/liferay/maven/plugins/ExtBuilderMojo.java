@@ -166,6 +166,10 @@ public class ExtBuilderMojo extends AbstractMojo {
 		List<Dependency> dependencies = libProject.getDependencies();
 
 		for (Dependency dependency : dependencies) {
+			if ( Artifact.SCOPE_PROVIDED.equals( dependency.getScope() ) ) {
+				continue;
+			}
+
 			Artifact libArtifact = resolveArtifact(dependency);
 
 			File libJar = new File(
